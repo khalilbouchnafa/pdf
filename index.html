@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Modifier</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .gradient-title {
+      background: -webkit-linear-gradient(#eee, #333);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .drop-zone {
+      border: 2px dashed #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .bottom-navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #f8f9fa;
+      border-top: 1px solid #e7e7e7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="mainContainer">
+    <h1 class="gradient-title">PDF Modifier</h1>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="inputText">Firma</label>
+            <input type="text" class="form-control" id="inputText">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText1">Adresse 1</label>
+            <input type="text" class="form-control" id="inputText1">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText2">Adresse 2</label>
+            <input type="text" class="form-control" id="inputText2">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText3">Titel</label>
+            <input type="text" class="form-control" id="inputText3">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText4">Begrussung</label>
+            <input type="text" class="form-control" id="inputText4">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText4">File name</label>
+            <input type="text" class="form-control" id="inputText5">
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="drop-zone" id="dropZone">Drag & Drop PDF Here or Click to Upload</div>
+            <input type="file" id="fileInput" class="d-none" accept="application/pdf">
+            <input type="text" class="form-control mt-2" id="fileNameDisplay1" placeholder="No file chosen" readonly>
+            <button type="button" onclick="modifyPdf()" class="btn btn-primary btn-block btn-lg mt-3">Speichern</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="small text-center mt-3">(Your browser will download the resulting file)</p>
+  </div>
+
+  <div class="container d-none" id="secondaryContainer">
+    <h1 class="gradient-title">Nur 1 Seite</h1>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="inputText">Firma</label>
+            <input type="text" class="form-control" id="input1Text">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText1">Adresse 1</label>
+            <input type="text" class="form-control" id="input1Text1">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText2">Adresse 2</label>
+            <input type="text" class="form-control" id="input1Text2">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText3">Titel</label>
+            <input type="text" class="form-control" id="input1Text3">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText4">Begrussung</label>
+            <input type="text" class="form-control" id="input1Text4">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="inputText4">File name</label>
+            <input type="text" class="form-control" id="input1Text5">
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="drop-zone" id="drop1Zone">Drag & Drop PDF Here or Click to Upload</div>
+            <input type="file" id="file1Input" class="d-none" accept="application/pdf">
+            <input type="text" class="form-control mt-2" id="fileNameDisplay2" placeholder="No file chosen" readonly>
+            <button type="button" onclick="modifyonePdf()" class="btn btn-primary btn-block btn-lg mt-3">Speichern</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="small text-center mt-3">(Your browser will download the resulting file)</p>
+  </div>
+
+  <nav class="navbar bottom-navbar">
+    <div class="container">
+      <button type="button" class="btn btn-info mr-2" onclick="showMainContainer()">dossier</button>
+      <button type="button" class="btn btn-warning" onclick="showSecondaryContainer()">anschreiben</button>
+    </div>
+  </nav>
+
+  <script src="https://unpkg.com/pdf-lib@1.4.0/dist/pdf-lib.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.4.0/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+  <!-- <script>
+    document.getElementById('dropZone').addEventListener('click', function() {
+      document.getElementById('fileInput').click();
+    });
+
+    function modifyPdf() {
+      // Your PDF modification logic here
+      console.log("Modify PDF");
+    }
+  </script> -->
+</body>
+</html>
