@@ -140,7 +140,7 @@ async function modifyPdf() {
   });
   firstPage.drawText(inputText1, {
     x: 75,
-    y: height / 2 + 320,
+    y: height / 2 + 326,
     size: 10,
     font: helveticaFont,
     color: rgb(0, 0, 0),
@@ -148,7 +148,7 @@ async function modifyPdf() {
   });
   firstPage.drawText(inputText2, {
     x: 75,
-    y: height / 2 + 304,
+    y: height / 2 + 312,
     size: 10,
     font: helveticaFont,
     color: rgb(0, 0, 0),
