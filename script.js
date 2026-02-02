@@ -265,3 +265,36 @@ async function modifyonePdf() {
   const blob = new Blob([pdfBytes], { type: "application/pdf" });
   saveAs(blob, inputText5);
 }
+
+
+#// Firebase Config 
+
+NEXT_PUBLIC_FIREBASE_API_KEY= "AlzaSyA--IaAjfoWalFDzotyb2iV1FScU u15CX4"
+
+NEXT_PUBLIC_FIREBASE_AUTH_DO
+
+MAIN="spark-d1f84.firebaseapp.com"
+
+NEXT_PUBLIC_FIREBASE_PROJECT_I
+
+D="spark-d1f84"
+
+NEXT_PUBLIC_FIREBASE_STORAGE
+
+BUCKET="spark-d1f84.appspot.com"
+
+NEXT_PUBLIC_FIREBASE_MESSAGIN
+
+G_SENDER_ID="118769640706"
+
+NEXT_PUBLIC_FIREBASE_APP_ID="1
+
+:118769640706:web:47bc2ce4d6548
+
+9c2bfce1b"
+
+NEXT_PUBLIC_ALLOWED_EMAILS=
+
+sparkosuser@gmail.com
+
+
